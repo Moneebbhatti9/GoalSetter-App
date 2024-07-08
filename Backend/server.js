@@ -2,6 +2,7 @@ const express = require("express");
 const dontenv = require("dotenv").config();
 const colors = require("colors");
 const connectDB = require("./config/db");
+const cors = require("cors");
 const { errorHandler } = require("./Middleware/errorMiddleware");
 const port = process.env.PORT || 8000;
 
@@ -11,6 +12,8 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(cors());
 
 app.use("/api/goals", require("./Routes/goalsRoutes"));
 app.use("/api/users", require("./Routes/userRoutes"));
